@@ -1,9 +1,10 @@
 package com.thoughtworks.collection;
 
-import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MyMap {
 
@@ -17,14 +18,18 @@ public class MyMap {
     }
 
     public List<Integer> getTriple() {
-        throw new NotImplementedException();
+        return array.stream().map(multiplyBy3 -> multiplyBy3 * 3).collect(Collectors.toList());
     }
 
     public List<String> mapLetter() {
-        throw new NotImplementedException();
+        List<String> arrayString = array.stream().map(String::valueOf).collect(Collectors.toList());
+        for (int x = 0; x < arrayString.size(); x++){
+            arrayString.set(x, letterList.get(array.get(x) - 1));
+        }
+        return arrayString;
     }
 
     public List<Integer> sortFromBig() {
-        throw new NotImplementedException();
+        return array.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList());
     }
 }
